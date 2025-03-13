@@ -15,14 +15,14 @@ class MockAsyncIGDBWrapper: AsyncIGDBWrapperI {
         let bundle = Bundle.myPackage
         
         guard let url = bundle.url(forResource: "GamesMockResponse", withExtension: "json") else {
-            fatalError("Failed to locate momd file for xcdatamodeld")
+            fatalError("Failed to locate GamesMockResponse.json file")
         }
         
         do {
             let jsonString = try String(contentsOf: url, encoding: .utf8)
             return jsonString
         } catch {
-            fatalError("Failed to read file")
+            fatalError("Failed to read GamesMockResponse.json file")
         }
     }
 }
