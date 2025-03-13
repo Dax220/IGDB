@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E8CC69792D80DD8100EF9A67 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = E8CC69782D80DD8100EF9A67 /* Domain */; };
+		E8CC697B2D80DD8500EF9A67 /* Repository in Frameworks */ = {isa = PBXBuildFile; productRef = E8CC697A2D80DD8500EF9A67 /* Repository */; };
+		E8CC69A92D80F51A00EF9A67 /* IGDB-SWIFT-API in Frameworks */ = {isa = PBXBuildFile; productRef = E8CC69A82D80F51A00EF9A67 /* IGDB-SWIFT-API */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		E8CC69442D80D8AC00EF9A67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +33,8 @@
 		E8CC692E2D80D8AB00EF9A67 /* IGDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IGDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8CC69432D80D8AC00EF9A67 /* IGDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IGDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8CC694D2D80D8AC00EF9A67 /* IGDBUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IGDBUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8CC69752D80DB4400EF9A67 /* Repository */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Repository; sourceTree = "<group>"; };
+		E8CC69762D80DC0800EF9A67 /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8CC697B2D80DD8500EF9A67 /* Repository in Frameworks */,
+				E8CC69A92D80F51A00EF9A67 /* IGDB-SWIFT-API in Frameworks */,
+				E8CC69792D80DD8100EF9A67 /* Domain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,9 +86,11 @@
 		E8CC69252D80D8AB00EF9A67 = {
 			isa = PBXGroup;
 			children = (
+				E8CC69742D80DB2D00EF9A67 /* Modules */,
 				E8CC69302D80D8AB00EF9A67 /* IGDB */,
 				E8CC69462D80D8AC00EF9A67 /* IGDBTests */,
 				E8CC69502D80D8AC00EF9A67 /* IGDBUITests */,
+				E8CC69772D80DD8100EF9A67 /* Frameworks */,
 				E8CC692F2D80D8AB00EF9A67 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +103,22 @@
 				E8CC694D2D80D8AC00EF9A67 /* IGDBUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E8CC69742D80DB2D00EF9A67 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				E8CC69762D80DC0800EF9A67 /* Domain */,
+				E8CC69752D80DB4400EF9A67 /* Repository */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		E8CC69772D80DD8100EF9A67 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +141,9 @@
 			);
 			name = IGDB;
 			packageProductDependencies = (
+				E8CC69782D80DD8100EF9A67 /* Domain */,
+				E8CC697A2D80DD8500EF9A67 /* Repository */,
+				E8CC69A82D80F51A00EF9A67 /* IGDB-SWIFT-API */,
 			);
 			productName = IGDB;
 			productReference = E8CC692E2D80D8AB00EF9A67 /* IGDB.app */;
@@ -195,6 +227,9 @@
 			);
 			mainGroup = E8CC69252D80D8AB00EF9A67;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E8CC69A72D80F51900EF9A67 /* XCRemoteSwiftPackageReference "IGDB-SWIFT-API" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E8CC692F2D80D8AB00EF9A67 /* Products */;
 			projectDirPath = "";
@@ -558,6 +593,33 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E8CC69A72D80F51900EF9A67 /* XCRemoteSwiftPackageReference "IGDB-SWIFT-API" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/husnjak/IGDB-SWIFT-API.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E8CC69782D80DD8100EF9A67 /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		E8CC697A2D80DD8500EF9A67 /* Repository */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Repository;
+		};
+		E8CC69A82D80F51A00EF9A67 /* IGDB-SWIFT-API */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8CC69A72D80F51900EF9A67 /* XCRemoteSwiftPackageReference "IGDB-SWIFT-API" */;
+			productName = "IGDB-SWIFT-API";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E8CC69262D80D8AB00EF9A67 /* Project object */;
 }
