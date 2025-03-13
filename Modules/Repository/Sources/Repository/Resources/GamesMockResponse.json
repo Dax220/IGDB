@@ -1,0 +1,21 @@
+[
+    {
+        "id": 199038,
+        "cover": {
+            "id": 219600,
+            "image_id": "co4pg0"
+        },
+        "genres": [
+            {
+                "id": 5,
+                "name": "Shooter"
+            },
+            {
+                "id": 10,
+                "name": "Racing"
+            }
+        ],
+        "name": "San Andreas Multiplayer",
+        "rating": 99.89715484285666
+    }
+]
