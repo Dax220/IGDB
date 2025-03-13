@@ -45,16 +45,12 @@ class GamesListViewModel: ObservableObject {
     func loadGames() {
         Task { @MainActor in
             guard !loadingState.isLoading else { return }
-            withAnimation {
-                loadingState = .initialLoading
-            }
+            setLoadingState(.initialLoading)
             do {
                 games = try await fetchGames(limit: limit, offset: 0)
             } catch {
                 games = []
-                withAnimation {
-                    loadingState = .initialLoadingError
-                }
+                setLoadingState(.initialLoadingError)
             }
         }
     }
@@ -62,15 +58,11 @@ class GamesListViewModel: ObservableObject {
     func loadMoreGames() {
         Task { @MainActor in
             guard !loadingState.isLoading else { return }
-            withAnimation {
-                loadingState = .batchloading
-            }
+            setLoadingState(.batchloading)
             do {
                 games += try await fetchGames(limit: limit, offset: offset)
             } catch {
-                withAnimation {
-                    loadingState = .batchLoadingError
-                }
+                setLoadingState(.batchLoadingError)
             }
         }
     }
@@ -86,13 +78,17 @@ class GamesListViewModel: ObservableObject {
                     offset: offset
                 )
             )
-            withAnimation {
-                loadingState = .loaded
-            }
+            setLoadingState(.loaded)
             return games
         } catch {
             try? await Task.sleep(nanoseconds: 1_000_000_000)
             throw error
+        }
+    }
+    
+    private func setLoadingState(_ state: LoadingState) {
+        withAnimation {
+            loadingState = state
         }
     }
 }

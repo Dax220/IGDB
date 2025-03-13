@@ -11,13 +11,13 @@ import Domain
 
 struct GamesListViewItem: View {
     
+    @State var height: CGFloat = 0
     var game: GameDTO
+    private let imageRatio = 0.75
     
     init(game: GameDTO) {
         self.game = game
     }
-    
-    @State var height: CGFloat = 0
     
     var body: some View {
         ZStack {
@@ -77,8 +77,11 @@ struct GamesListViewItem: View {
             }
         )
         .onPreferenceChange(RectPreferenceKey.self) { value in
-            Task { @MainActor in
-                height = value.width / 0.75
+            let newHeight = value.width / imageRatio
+            if height != newHeight {
+                Task { @MainActor in
+                    height = newHeight
+                }
             }
         }
     }
