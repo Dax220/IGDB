@@ -19,7 +19,7 @@ class RemoteGamesMapper {
     func mapFromServerDTO(_ serverDTO: GameServerDTO) -> GameDTO {
         GameDTO(
             id: serverDTO.id,
-            coverImageURL: imageBuilder(imageID: serverDTO.cover.imageId, size: .HD),
+            coverImageURL: imageBuilder(imageID: serverDTO.cover?.imageId ?? "", size: .COVER_BIG),
             name: serverDTO.name,
             rating: ratingFormatter.roundRating(value: serverDTO.rating),
             genres: serverDTO.genres?.map(\.name)

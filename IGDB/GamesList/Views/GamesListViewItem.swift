@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 import Domain
+
 
 struct GamesListViewItem: View {
     
     var game: GameDTO
+    
+    init(game: GameDTO) {
+        self.game = game
+    }
+    
+    @State var height: CGFloat = 0
     
     var body: some View {
         ZStack {
@@ -19,14 +25,19 @@ struct GamesListViewItem: View {
             
             VStack {
                 
-                WebImage(url: URL(string: game.coverImageURL)) { image in
-                    image
-                        .resizable()
-                } placeholder: {
-                    Image("emptyImage")
-                        .resizable()
-                }
-                .scaledToFit()
+                CachedAsyncImage(
+                    url: URL(string: game.coverImageURL ?? "")!,
+                    content: { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                    }, placeholder: {
+                        Image("emptyImage")
+                            .resizable()
+                    }
+                )
+                .frame(height: height)
+                
                 
                 Spacer()
                 
@@ -60,6 +71,16 @@ struct GamesListViewItem: View {
         }
         .cornerRadius(5)
         .shadow(radius: 5)
+        .overlay(
+            GeometryReader { proxy in
+                Color.clear.preference(key: RectPreferenceKey.self, value: proxy.frame(in: .global))
+            }
+        )
+        .onPreferenceChange(RectPreferenceKey.self) { value in
+            Task { @MainActor in
+                height = value.width / 0.75
+            }
+        }
     }
 }
 

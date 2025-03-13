@@ -9,14 +9,14 @@ import Foundation
 
 public struct GameDTO: Sendable, Identifiable {
     public let id: Int
-    public let coverImageURL: String
+    public let coverImageURL: String?
     public let name: String
     public let rating: String
     public let genres: [String]?
     
     public init(
         id: Int,
-        coverImageURL: String,
+        coverImageURL: String?,
         name: String,
         rating: String,
         genres: [String]?
