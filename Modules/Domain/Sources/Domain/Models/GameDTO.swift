@@ -12,14 +12,14 @@ public struct GameDTO: Sendable {
     public let coverImageId: String
     public let name: String
     public let rating: String
-    public let genres: [String]
+    public let genres: [String]?
     
     public init(
         id: Int,
         coverImageId: String,
         name: String,
         rating: String,
-        genres: [String]
+        genres: [String]?
     ) {
         self.id = id
         self.coverImageId = coverImageId

@@ -18,7 +18,7 @@ final class RepositoryTests: XCTestCase {
         XCTAssertEqual(game!.coverImageId, "co4pg0")
         XCTAssertEqual(game!.name, "San Andreas Multiplayer")
         XCTAssertEqual(game!.rating, "10")
-        XCTAssertEqual(Set(game!.genres), Set(["Racing", "Shooter"]))
+        XCTAssertEqual(Set(game!.genres ?? []), Set(["Racing", "Shooter"]))
     }
     
     func testAPICalypseBuilder() {
