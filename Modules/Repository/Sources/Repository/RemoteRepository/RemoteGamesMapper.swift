@@ -21,7 +21,7 @@ class RemoteGamesMapper {
             coverImageId: serverDTO.cover.imageId,
             name: serverDTO.name,
             rating: ratingFormatter.roundRating(value: serverDTO.rating),
-            genres: serverDTO.genres?.map(\.name) ?? []
+            genres: serverDTO.genres?.map(\.name)
         )
     }
 }
