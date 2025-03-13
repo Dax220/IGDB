@@ -6,6 +6,7 @@
 //
 
 import Domain
+import IGDB_SWIFT_API
 
 class RemoteGamesMapper {
     
@@ -18,7 +19,7 @@ class RemoteGamesMapper {
     func mapFromServerDTO(_ serverDTO: GameServerDTO) -> GameDTO {
         GameDTO(
             id: serverDTO.id,
-            coverImageId: serverDTO.cover.imageId,
+            coverImageURL: imageBuilder(imageID: serverDTO.cover.imageId, size: .HD),
             name: serverDTO.name,
             rating: ratingFormatter.roundRating(value: serverDTO.rating),
             genres: serverDTO.genres?.map(\.name)

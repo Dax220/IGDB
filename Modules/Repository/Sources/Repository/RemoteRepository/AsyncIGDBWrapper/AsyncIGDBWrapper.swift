@@ -16,10 +16,15 @@ class AsyncIGDBWrapper: AsyncIGDBWrapperI {
     }
     
     func jsonGames(apiCalypse: APICalypse) async throws -> String {
-        try await withCheckedThrowingContinuation { continuation in
+        var isResumed = false
+        return try await withCheckedThrowingContinuation { continuation in
             wrapper.jsonGames(apiCalypse: apiCalypse, result: { json in
-                continuation.resume(returning: json)
+                if !isResumed {
+                    isResumed = true
+                    continuation.resume(returning: json)
+                }
             }, errorResponse: { error in
+                isResumed = true
                 continuation.resume(throwing: error)
             })
         }
