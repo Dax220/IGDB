@@ -11,7 +11,7 @@ import Domain
 
 struct GamesListViewItem: View {
     
-    @State var height: CGFloat = 0
+    @State var height: CGFloat = 250
     var game: GameDTO
     private let imageRatio = 0.75
     
