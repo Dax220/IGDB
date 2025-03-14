@@ -15,7 +15,7 @@ final class RepositoryTests: XCTestCase {
         let game = try await repo.fetchGames(parameters: FetchGamesParameters()).first
         XCTAssertNotNil(game)
         XCTAssertEqual(game!.id, 199038)
-        XCTAssertEqual(game!.coverImageId, "co4pg0")
+        XCTAssertEqual(game!.coverImageURL, "https://images.igdb.com/igdb/image/upload/t_720p/co4pg0.png")
         XCTAssertEqual(game!.name, "San Andreas Multiplayer")
         XCTAssertEqual(game!.rating, "10")
         XCTAssertEqual(Set(game!.genres ?? []), Set(["Racing", "Shooter"]))

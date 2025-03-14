@@ -10,7 +10,9 @@ import IGDB_SWIFT_API
 
 public class RepositoryFactory {
     
-    public static func makeRemoteRepository() -> Repository {
+    public init() {}
+    
+    public func makeRemoteRepository() -> Repository {
         let wrapper = IGDBWrapper(clientID: "zzs4gfiji5brwwulue73l8ug1vjbhr", accessToken: "y91urcv3rtjwpgk685on6s4h29mlkn")
         let asyncWrapper = AsyncIGDBWrapper(wrapper: wrapper)
         let ratingFormatter = RatingFormatter()

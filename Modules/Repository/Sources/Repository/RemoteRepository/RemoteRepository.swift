@@ -23,13 +23,12 @@ class RemoteRepository: RemoteRepositoryI {
     
     func fetchGames(parameters: FetchGamesParameters) async throws -> [GameDTO] {
         let apiCalypse = apiCalypseBuilder.buildApiCalypse(parameters: parameters)
+        print(apiCalypse.buildQuery())
         let gamesJson = try await wrapper.jsonGames(apiCalypse: apiCalypse)
-        print(gamesJson)
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         guard let data = gamesJson.data(using: .utf8) else {
-            //TODO: - throw an error
-            return []
+            throw AppError.invalidUTF8(gamesJson)
         }
         let serverDTO = try decoder.decode([GameServerDTO].self, from: data)
         return serverDTO.map(mapper.mapFromServerDTO)

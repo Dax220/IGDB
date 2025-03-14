@@ -9,7 +9,7 @@ import Foundation
 
 struct GameServerDTO: Decodable {
     let id: Int
-    let cover: Cover
+    let cover: Cover?
     let name: String
     let rating: Double
     let genres: [Genre]?

@@ -7,7 +7,7 @@
 
 import IGDB_SWIFT_API
 
-public struct FetchGamesParameters {
+public struct FetchGamesParameters: Sendable {
     let fields: [GameFields]?
     let sorting: GameSorting?
     let limit: Int?
@@ -26,7 +26,7 @@ public struct FetchGamesParameters {
     }
 }
 
-public struct GameSorting {
+public struct GameSorting: Sendable {
     let gameField: GameFields
     let order: SortOrder
     
@@ -36,7 +36,7 @@ public struct GameSorting {
     }
 }
 
-public enum SortOrder: String {
+public enum SortOrder: String, Sendable {
     case asc
     case desc
     
@@ -50,7 +50,7 @@ public enum SortOrder: String {
     }
 }
 
-public enum GameFields: String, CaseIterable {
+public enum GameFields: String, CaseIterable, Sendable {
     case name
     case coverImageId = "cover.image_id"
     case rating
