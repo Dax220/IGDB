@@ -9,21 +9,27 @@
 import Network
 import Combine
 
-class NetworkMonitor: NetworkMonitorConnectionStatus, NetworkMonitorManager {
+class NetworkMonitor: NetworkMonitorI, @unchecked Sendable {
     
     var isConnectedPublisher: Published<Bool>.Publisher {
-        $isConnected
+        $isConnectedValue
     }
-        
+    
+    var isConnected: Bool {
+        isConnectedValue
+    }
+    
     @Published
-    private var isConnected: Bool = false
+    private var isConnectedValue: Bool = false
     
     private let queue = DispatchQueue.global()
     private let monitor = NWPathMonitor()
     
     func startMonitoring() {
         monitor.pathUpdateHandler = { [weak self] path in
-            self?.isConnected = path.status == .satisfied
+            DispatchQueue.main.async {
+                self?.isConnectedValue = path.status == .satisfied
+            }
         }
         monitor.start(queue: queue)
     }

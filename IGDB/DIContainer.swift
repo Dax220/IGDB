@@ -7,6 +7,7 @@
 
 import Repository
 import Swinject
+import Core
 
 class DIContainer {
     
@@ -23,6 +24,7 @@ class DIContainer {
     }
     
     func register() {
+        CoreDI().assemble(container: container)
         RepositoryDI().assemble(container: container)
     }
 }

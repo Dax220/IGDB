@@ -45,6 +45,9 @@ class GamesListViewModel: ObservableObject {
             do {
                 let fetchedgames = try await fetchGames(limit: limit, offset: 0)
                 self.games = fetchedgames
+                if self.games.isEmpty {
+                    throw AppError.noGames
+                }
                 Task.detached(priority: .utility) {
                     try await self.repository.deleteAllGames()
                     try await self.repository.saveGames(fetchedgames)

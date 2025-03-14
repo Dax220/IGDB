@@ -7,19 +7,26 @@
 
 import Foundation
 import Domain
+import Core
 
 class RepositoryFacade: RepositoryFacadeI {
     
     private let remoteRepository: RepositoryI
     private let localRepository: LocalRepositoryI
+    private let networkMonitor: NetworkMonitorI
     
     private var isInternetAvailable: Bool {
-        return true
+        return networkMonitor.isConnected
     }
     
-    init(remoteRepository: RepositoryI, localRepository: LocalRepositoryI) {
+    init(
+        remoteRepository: RepositoryI,
+        localRepository: LocalRepositoryI,
+        networkMonitor: NetworkMonitorI
+    ) {
         self.remoteRepository = remoteRepository
         self.localRepository = localRepository
+        self.networkMonitor = networkMonitor
     }
     
     public func fetchGames(parameters: FetchGamesParameters) async throws -> [GameDTO] {
