@@ -71,19 +71,19 @@ struct GamesListViewItem: View {
         }
         .cornerRadius(5)
         .shadow(radius: 5)
-        .overlay(
-            GeometryReader { proxy in
-                Color.clear.preference(key: RectPreferenceKey.self, value: proxy.frame(in: .global))
-            }
-        )
-        .onPreferenceChange(RectPreferenceKey.self) { value in
-            let newHeight = value.width / imageRatio
-            if height != newHeight {
-                Task { @MainActor in
-                    height = newHeight
-                }
-            }
-        }
+//        .overlay(
+//            GeometryReader { proxy in
+//                Color.clear.preference(key: RectPreferenceKey.self, value: proxy.frame(in: .global))
+//            }
+//        )
+//        .onPreferenceChange(RectPreferenceKey.self) { value in
+//            let newHeight = value.width / imageRatio
+//            if height != newHeight {
+//                Task { @MainActor in
+//                    height = newHeight
+//                }
+//            }
+//        }
     }
 }
 

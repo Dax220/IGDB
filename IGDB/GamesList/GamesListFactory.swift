@@ -16,7 +16,7 @@ class GamesListFactory {
     }
     
     static func makeViewModel() -> GamesListViewModel {
-        let repositoryFactory = RepositoryFactory()
-        return GamesListViewModel(repositoryFactory: repositoryFactory)
+        let repository = DIContainer.shared.resolve(RepositoryFacadeI.self)
+        return GamesListViewModel(repository: repository)
     }
 }

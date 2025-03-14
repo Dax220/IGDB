@@ -1,5 +1,5 @@
 {
-  "originHash" : "ffca2e50bbc8b1e07a873e46523b7e08e08723bbbcb6ccdd0a5409b26fa4a176",
+  "originHash" : "5d1adac958c3cb5cc093fb9a81269f9fa68859c05057d76844f65bf35eb36855",
   "pins" : [
     {
       "identity" : "igdb-swift-api",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "d72aed98f8253ec1aa9ea1141e28150f408cf17f",
         "version" : "1.29.0"
+      }
+    },
+    {
+      "identity" : "swinject",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Swinject/Swinject.git",
+      "state" : {
+        "revision" : "be9dbcc7b86811bc131539a20c6f9c2d3e56919f",
+        "version" : "2.9.1"
       }
     }
   ],

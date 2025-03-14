@@ -32,14 +32,10 @@ class GamesListViewModel: ObservableObject {
         games.count
     }
     
-    private var repository: Repository {
-        repositoryFactory.makeRemoteRepository()
-    }
+    private let repository: RepositoryFacadeI
     
-    private let repositoryFactory: RepositoryFactory
-    
-    init(repositoryFactory: RepositoryFactory) {
-        self.repositoryFactory = repositoryFactory
+    init(repository: RepositoryFacadeI) {
+        self.repository = repository
     }
     
     func loadGames() {
@@ -47,7 +43,15 @@ class GamesListViewModel: ObservableObject {
             guard !loadingState.isLoading else { return }
             setLoadingState(.initialLoading)
             do {
-                games = try await fetchGames(limit: limit, offset: 0)
+                let fetchedgames = try await fetchGames(limit: limit, offset: 0)
+                self.games = fetchedgames
+                if self.games.isEmpty {
+                    throw AppError.noGames
+                }
+                Task.detached(priority: .utility) {
+                    try await self.repository.deleteAllGames()
+                    try await self.repository.saveGames(fetchedgames)
+                }
             } catch {
                 games = []
                 setLoadingState(.initialLoadingError)
@@ -60,7 +64,11 @@ class GamesListViewModel: ObservableObject {
             guard !loadingState.isLoading else { return }
             setLoadingState(.batchloading)
             do {
-                games += try await fetchGames(limit: limit, offset: offset)
+                let fetchedgames = try await fetchGames(limit: limit, offset: offset)
+                games.append(contentsOf: fetchedgames)
+                Task.detached(priority: .utility) {
+                    try await self.repository.saveGames(fetchedgames)
+                }
             } catch {
                 setLoadingState(.batchLoadingError)
             }

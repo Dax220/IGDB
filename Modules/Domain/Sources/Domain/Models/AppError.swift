@@ -9,4 +9,5 @@ import Foundation
 
 public enum AppError: Error {
     case invalidUTF8(String)
+    case noGames
 }

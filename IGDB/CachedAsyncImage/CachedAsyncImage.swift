@@ -31,14 +31,16 @@ struct CachedAsyncImage<Content: View, Placeholder: View>: View {
                 content(Image(uiImage: image))
             } else {
                 placeholder
-                    .onAppear() {
-                        loadImage()
+                    .onAppear {
+                        Task.detached {
+                            await loadImage()
+                        }
                     }
             }
         }
     }
     
-    private func loadImage() {
+    private func loadImage() async {
         
         let request = URLRequest(url: url)
         
