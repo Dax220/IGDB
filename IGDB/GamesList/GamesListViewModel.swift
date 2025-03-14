@@ -32,14 +32,10 @@ class GamesListViewModel: ObservableObject {
         games.count
     }
     
-    private var repository: RepositoryFacadeI {
-        repositoryFactory.makeRepositoryFacade()
-    }
+    private let repository: RepositoryFacadeI
     
-    private let repositoryFactory: RepositoryFactory
-    
-    init(repositoryFactory: RepositoryFactory) {
-        self.repositoryFactory = repositoryFactory
+    init(repository: RepositoryFacadeI) {
+        self.repository = repository
     }
     
     func loadGames() {

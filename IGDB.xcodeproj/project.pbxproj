@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8AD01C72D844F02004AE866 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = E8AD01C62D844F02004AE866 /* Swinject */; };
 		E8CC69792D80DD8100EF9A67 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = E8CC69782D80DD8100EF9A67 /* Domain */; };
 		E8CC697B2D80DD8500EF9A67 /* Repository in Frameworks */ = {isa = PBXBuildFile; productRef = E8CC697A2D80DD8500EF9A67 /* Repository */; };
 		E8CC69A92D80F51A00EF9A67 /* IGDB-SWIFT-API in Frameworks */ = {isa = PBXBuildFile; productRef = E8CC69A82D80F51A00EF9A67 /* IGDB-SWIFT-API */; };
@@ -63,6 +64,7 @@
 				E8CC697B2D80DD8500EF9A67 /* Repository in Frameworks */,
 				E8CC69A92D80F51A00EF9A67 /* IGDB-SWIFT-API in Frameworks */,
 				E8CC69792D80DD8100EF9A67 /* Domain in Frameworks */,
+				E8AD01C72D844F02004AE866 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +146,7 @@
 				E8CC69782D80DD8100EF9A67 /* Domain */,
 				E8CC697A2D80DD8500EF9A67 /* Repository */,
 				E8CC69A82D80F51A00EF9A67 /* IGDB-SWIFT-API */,
+				E8AD01C62D844F02004AE866 /* Swinject */,
 			);
 			productName = IGDB;
 			productReference = E8CC692E2D80D8AB00EF9A67 /* IGDB.app */;
@@ -229,6 +232,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				E8CC69A72D80F51900EF9A67 /* XCRemoteSwiftPackageReference "IGDB-SWIFT-API" */,
+				E8AD01C52D844F02004AE866 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E8CC692F2D80D8AB00EF9A67 /* Products */;
@@ -597,6 +601,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E8AD01C52D844F02004AE866 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
 		E8CC69A72D80F51900EF9A67 /* XCRemoteSwiftPackageReference "IGDB-SWIFT-API" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/husnjak/IGDB-SWIFT-API.git";
@@ -608,6 +620,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E8AD01C62D844F02004AE866 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8AD01C52D844F02004AE866 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
 		E8CC69782D80DD8100EF9A67 /* Domain */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Domain;
