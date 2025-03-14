@@ -110,7 +110,7 @@ struct CachedAsyncImage<Content: View, Placeholder: View>: View {
                 
                 print("total size: \(totalSize / 1048576) MB")
                 if totalSize > maxSizeBytes {
-                    let sortedFiles = fileInfos.sorted { $0.date < $1.date }  // Старые файлы первыми
+                    let sortedFiles = fileInfos.sorted { $0.date < $1.date }
                     
                     var sizeToFree = Int(Double(maxSizeBytes) * 0.3)
                     for file in sortedFiles {
