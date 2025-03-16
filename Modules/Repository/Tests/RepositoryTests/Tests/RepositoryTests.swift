@@ -8,25 +8,20 @@ final class RepositoryTests: XCTestCase {
     
     func testRemoteOnline() async throws {
         let remoteRepo = MockRepositoryFactory.shared.makeRepository()
-        MockNetworkMonitor.isNetworkAvailable = true
-        let remoteGame = try await remoteRepo.fetchGames(parameters: FetchGamesParameters()).first
+        let remoteGame = try await remoteRepo.fetchGames(parameters: FetchGamesParameters(), remotely: true).first
         testGame(game: remoteGame)
     }
     
     func testFetchAndSaveDataForOfflineCase() async throws {
         let repo = MockRepositoryFactory.shared.makeRepository() as! MockRepositoryFacade
-        MockNetworkMonitor.isNetworkAvailable = true
-        let remoteGame = try await repo.fetchGames(parameters: FetchGamesParameters()).first
+        let remoteGame = try await repo.fetchGames(parameters: FetchGamesParameters(), remotely: true).first
         try await repo.saveGames([remoteGame!])
         
-        XCTAssertTrue(MockNetworkMonitor.isNetworkAvailable == true)
         XCTAssertTrue(repo.fetchRemoteCalled == true)
         XCTAssertTrue(repo.fetchLocalCalled == false)
+    
+        let localGame = try await repo.fetchGames(parameters: FetchGamesParameters(), remotely: false).first
         
-        MockNetworkMonitor.isNetworkAvailable = false
-        let localGame = try await repo.fetchGames(parameters: FetchGamesParameters()).first
-        
-        XCTAssertTrue(MockNetworkMonitor.isNetworkAvailable == false)
         XCTAssertTrue(repo.fetchRemoteCalled == false)
         XCTAssertTrue(repo.fetchLocalCalled == true)
         testGame(game: localGame)

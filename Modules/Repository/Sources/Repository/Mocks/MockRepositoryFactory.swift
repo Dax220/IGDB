@@ -5,7 +5,6 @@
 //  Created by Maxim Tischenko on 16.03.2025.
 //
 
-@testable import Repository
 import Swinject
 import Core
 
@@ -35,14 +34,17 @@ class MockRepositoryFactory {
         container.register(RepositoryFacadeI.self) { r in
             MockRepositoryFacade(
                 remoteRepository: r.resolve(RemoteRepositoryI.self)!,
-                localRepository: r.resolve(LocalRepositoryI.self)!,
-                networkMonitor: r.resolve(NetworkMonitorI.self)!
+                localRepository: r.resolve(LocalRepositoryI.self)!
             )
         }
         .inObjectScope(.container)
     }
   
     func makeRepository() -> RepositoryFacadeI {
-        return container.resolve(RepositoryFacadeI.self)!
+        container.resolve(RepositoryFacadeI.self)!
+    }
+    
+    func makeNetworkMonitor() -> NetworkMonitorI {
+        container.resolve(NetworkMonitorI.self)!
     }
 }

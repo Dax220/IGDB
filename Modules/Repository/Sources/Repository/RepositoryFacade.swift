@@ -13,40 +13,29 @@ class RepositoryFacade: RepositoryFacadeI {
     
     private let remoteRepository: RepositoryI
     private let localRepository: LocalRepositoryI
-    private let networkMonitor: NetworkMonitorI
-    
-    private var isInternetAvailable: Bool {
-        return networkMonitor.isConnected
-    }
     
     init(
         remoteRepository: RepositoryI,
-        localRepository: LocalRepositoryI,
-        networkMonitor: NetworkMonitorI
+        localRepository: LocalRepositoryI
     ) {
         self.remoteRepository = remoteRepository
         self.localRepository = localRepository
-        self.networkMonitor = networkMonitor
     }
     
-    public func fetchGames(parameters: FetchGamesParameters) async throws -> [GameDTO] {
-        if isInternetAvailable {
+    public func fetchGames(parameters: FetchGamesParameters, remotely: Bool) async throws -> [GameDTO] {
+        if remotely {
             return try await fetchRemotely(parameters: parameters)
         }
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        try? await Task.sleep(nanoseconds: 500_000_000)
         return try await fetchLocaly(parameters: parameters)
     }
     
     public func saveGames(_ games: [GameDTO]) async throws {
-        if isInternetAvailable {
-            try await localRepository.saveGames(games)
-        }
+        try await localRepository.saveGames(games)
     }
     
     public func deleteAllGames() async throws {
-        if isInternetAvailable {
-            try await localRepository.deleteAllGames()
-        }
+        try await localRepository.deleteAllGames()
     }
     
     internal func fetchRemotely(parameters: FetchGamesParameters) async throws -> [GameDTO] {

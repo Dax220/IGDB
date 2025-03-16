@@ -48,11 +48,9 @@ public class RepositoryDI: Assembly {
         container.register(RepositoryFacadeI.self) { r in
             let remoteRepository = r.resolve(RemoteRepositoryI.self)!
             let localRepository = r.resolve(LocalRepositoryI.self)!
-            let networkMonitor = r.resolve(NetworkMonitorI.self)!
             return RepositoryFacade(
                 remoteRepository: remoteRepository,
-                localRepository: localRepository,
-                networkMonitor: networkMonitor
+                localRepository: localRepository
             )
         }.inObjectScope(.container)
     }

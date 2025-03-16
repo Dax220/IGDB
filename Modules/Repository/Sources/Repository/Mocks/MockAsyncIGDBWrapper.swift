@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import Repository
 import IGDB_SWIFT_API
 
 class MockAsyncIGDBWrapper: AsyncIGDBWrapperI {

@@ -9,6 +9,7 @@ import Foundation
 import Repository
 import Domain
 import SwiftUI
+import Core
 
 class GamesListViewModel: ObservableObject {
     
@@ -33,9 +34,11 @@ class GamesListViewModel: ObservableObject {
     }
     
     private let repository: RepositoryFacadeI
+    private let networkMonitor: NetworkMonitorI
     
-    init(repository: RepositoryFacadeI) {
+    init(repository: RepositoryFacadeI, networkMonitor: NetworkMonitorI) {
         self.repository = repository
+        self.networkMonitor = networkMonitor
         loadGames()
     }
     
@@ -51,8 +54,10 @@ class GamesListViewModel: ObservableObject {
                     throw AppError.noGames
                 }
                 Task.detached(priority: .utility) {
-                    try await self.repository.deleteAllGames()
-                    try await self.repository.saveGames(fetchedgames)
+                    if self.networkMonitor.isConnected {
+                        try await self.repository.deleteAllGames()
+                        try await self.repository.saveGames(fetchedgames)
+                    }
                 }
             } catch {
                 games = []
@@ -69,7 +74,9 @@ class GamesListViewModel: ObservableObject {
                 let fetchedgames = try await fetchGames(limit: limit, offset: offset)
                 games.append(contentsOf: fetchedgames)
                 Task.detached(priority: .utility) {
-                    try await self.repository.saveGames(fetchedgames)
+                    if self.networkMonitor.isConnected {
+                        try await self.repository.saveGames(fetchedgames)
+                    }
                 }
             } catch {
                 setLoadingState(.batchLoadingError)
@@ -86,7 +93,8 @@ class GamesListViewModel: ObservableObject {
                     sorting: GameSorting(gameField: .rating, order: .desc),
                     limit: limit,
                     offset: offset
-                )
+                ),
+                remotely: networkMonitor.isConnected
             )
             setLoadingState(.loaded)
             return games
