@@ -14,8 +14,10 @@ struct GameDetailsTextPair: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            
             Text(topText)
                 .font(.headline)
+            
             Text(bottomText)
                 .font(.footnote)
         }

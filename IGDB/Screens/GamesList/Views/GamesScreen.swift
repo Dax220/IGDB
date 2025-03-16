@@ -14,6 +14,7 @@ struct GamesScreen: View {
     
     var body: some View {
         ZStack {
+            
             VStack {
                 if viewModel.loadingState == .initialLoading {
                     VStack {

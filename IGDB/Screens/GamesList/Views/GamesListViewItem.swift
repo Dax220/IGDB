@@ -20,6 +20,7 @@ struct GamesListViewItem: View {
     
     var body: some View {
         ZStack {
+            
             Color.white
             
             VStack {
@@ -36,7 +37,6 @@ struct GamesListViewItem: View {
                     }
                 )
                 .frame(height: height)
-                
                 
                 Spacer()
                 

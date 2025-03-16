@@ -15,6 +15,7 @@ struct GameDetailsOverview: View {
         VStack(alignment: .leading) {
             
             VStack(alignment: .leading, spacing: 8) {
+                
                 if let genre = viewModel.genre, !genre.isEmpty {
                     GameDetailsTextPair(
                         topText: String(localized: "game-details.genre"),

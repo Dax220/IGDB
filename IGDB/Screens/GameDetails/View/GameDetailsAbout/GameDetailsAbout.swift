@@ -13,8 +13,8 @@ struct GameDetailsAbout: View {
     @EnvironmentObject var viewModel: GameDetailsViewModel
     
     var body: some View {
-        
         VStack {
+            
             VStack {
                 
                 Grid {
@@ -40,6 +40,7 @@ struct GameDetailsAbout: View {
                 
                 if let storyline = viewModel.storyline {
                     Divider()
+                    
                     ExpandableText(storyline)
                         .font(.caption)
                 }

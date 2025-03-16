@@ -14,6 +14,7 @@ struct GameAboutTextItem: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            
             HStack {
                 Text(title)
                     .font(.headline)
@@ -27,6 +28,7 @@ struct GameAboutTextItem: View {
                     Spacer()
                 }
             }
+            
             Spacer()
         }
     }

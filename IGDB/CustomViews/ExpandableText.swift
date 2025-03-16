@@ -20,6 +20,7 @@ struct ExpandableText: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            
             Text(text)
                 .lineLimit(isExpanded ? nil : 3)
                 .background(
@@ -27,9 +28,12 @@ struct ExpandableText: View {
                         Text(text)
                             .hidden()
                         Color.clear
-                            .onAppear { isTruncated = true }
+                            .onAppear {
+                                isTruncated = true
+                            }
                     }
                 )
+            
             if isTruncated == true {
                 Text(isExpanded ? "expandable-text.less" : "expandable-text.more")
                     .onTapGesture {

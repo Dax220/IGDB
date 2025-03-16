@@ -13,7 +13,9 @@ struct GameDetailsScreenshots: View {
     
     var body: some View {
         LazyVStack {
+            
             ForEach(viewModel.screenshots, id: \.self) { screenshot in
+                
                 CachedAsyncImage(
                     url: URL(string: screenshot)!,
                     content: { image in

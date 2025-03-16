@@ -16,7 +16,6 @@ struct GameDetails: View {
     @State var headerHeight: CGFloat?
     
     var body: some View {
-        
         ZStack(alignment: .topLeading) {
             
             ScrollView(showsIndicators: false) {

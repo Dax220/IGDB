@@ -13,7 +13,9 @@ struct GameDetailsRatingView: View {
     
     var body: some View {
         HStack {
+            
             VStack(alignment: .leading) {
+                
                 HStack {
                     Image(systemName: "star.fill")
                         .resizable()
@@ -21,6 +23,7 @@ struct GameDetailsRatingView: View {
                         .foregroundColor(.yellow)
                     Text(viewModel.rating)
                 }
+                
                 if let ratingCount = viewModel.ratingCount {
                     HStack {
                         Text("\(ratingCount)")
@@ -28,9 +31,12 @@ struct GameDetailsRatingView: View {
                     }
                 }
             }
+            
             Spacer()
+            
             if let aggregatedRating = viewModel.aggregatedRating {
                 VStack(alignment: .trailing) {
+                    
                     HStack {
                         Image(systemName: "star.fill")
                             .resizable()
@@ -38,6 +44,7 @@ struct GameDetailsRatingView: View {
                             .foregroundColor(.yellow)
                         Text("\(aggregatedRating)")
                     }
+                    
                     if let aggregatedRatingCount = viewModel.aggregatedRatingCount {
                         HStack {
                             Text("\(aggregatedRatingCount)")

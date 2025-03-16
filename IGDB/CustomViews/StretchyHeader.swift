@@ -13,7 +13,7 @@ struct GeometryProxyReader {
     static var safeAreaTopOffset: CGFloat?
     
     static func getScrollOffset(_ proxy: GeometryProxy) -> CGFloat {
-        return proxy.frame(in: .global).minY
+        proxy.frame(in: .global).minY
     }
     
     static func getOffsetForHeader(_ proxy: GeometryProxy) -> CGFloat {
@@ -39,6 +39,7 @@ struct StretchyHeader: View {
     
     var body: some View {
         GeometryReader { proxy in
+            
             CachedAsyncImage(
                 url: imageURL,
                 content: { image in

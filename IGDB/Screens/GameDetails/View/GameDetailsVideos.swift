@@ -13,7 +13,9 @@ struct GameDetailsVideos: View {
     
     var body: some View {
         LazyVStack {
+            
             ForEach(viewModel.videos, id: \.self) { video in
+                
                 VStack(alignment: .leading, spacing: 4) {
                     if let title = video.title {
                         Text(title)
