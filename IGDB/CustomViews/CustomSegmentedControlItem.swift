@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomSegmentedControlItem {
-    var title: String
+    var title: LocalizedStringKey
     var backgroundColor: Color = .black
     var titleColor: Color = .white
     var selectedBackgroundColor: Color = .gray

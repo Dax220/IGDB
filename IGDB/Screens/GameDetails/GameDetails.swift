@@ -46,9 +46,9 @@ struct GameDetails: View {
                     VStack {
                         CustomSegmentedControl(
                             selectedTab: $viewModel.selectedTab, items: [
-                                .init(title: "About"),
-                                .init(title: "Videos"),
-                                .init(title: "Screenshots")
+                                .init(title: "segmented-control.about"),
+                                .init(title: "segmented-control.videos"),
+                                .init(title: "segmented-control.screenshots")
                             ]
                         )
                         .padding(8)
