@@ -29,4 +29,19 @@ class AsyncIGDBWrapper: AsyncIGDBWrapperI {
             })
         }
     }
+    
+    func jsonPopularPrimitives(apiCalypse: APICalypse) async throws -> String {
+        var isResumed = false
+        return try await withCheckedThrowingContinuation { continuation in
+            wrapper.jsonPopularityPrimitives(apiCalypse: apiCalypse) { json in
+                if !isResumed {
+                    isResumed = true
+                    continuation.resume(returning: json)
+                }
+            } errorResponse: { error in
+                isResumed = true
+                continuation.resume(throwing: error)
+            }
+        }
+    }
 }

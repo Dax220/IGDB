@@ -25,6 +25,8 @@ struct GameDetailsScreenshots: View {
                     }, placeholder: {
                         Image("emptyImage")
                             .resizable()
+                            .scaledToFit()
+                            .frame(height: 200)
                     }
                 )
             }

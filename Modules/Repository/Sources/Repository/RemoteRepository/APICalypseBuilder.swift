@@ -9,20 +9,25 @@ import IGDB_SWIFT_API
 
 class APICalypseBuilder {
     
-    func buildApiCalypse(parameters: FetchGamesParameters) -> APICalypse {
+    func buildApiCalypseForGames(parameters: FetchGamesParameters) -> APICalypse {
         var apicalypse = APICalypse()
         if let fields = parameters.fields {
             apicalypse = apicalypse.fields(fields: fields.map(\.rawValue).joined(separator: ","))
         }
-        if let sorting = parameters.sorting {
-            apicalypse = apicalypse.sort(field: sorting.gameField.rawValue, order: sorting.order.sort)
-        }
+        return apicalypse
+    }
+    
+    func buildApiCalypseForPrimitives(parameters: FetchGamesParameters) -> APICalypse {
+        var apicalypse = APICalypse()
+        apicalypse = apicalypse.fields(fields: "game_id")
         if let limit = parameters.limit {
             apicalypse = apicalypse.limit(value: Int32(limit))
         }
         if let offset = parameters.offset {
             apicalypse = apicalypse.offset(value: Int32(offset))
         }
+        apicalypse = apicalypse.where(query: "popularity_type = 3")
+        apicalypse = apicalypse.sort(field: "value", order: .DESCENDING)
         return apicalypse
     }
 }

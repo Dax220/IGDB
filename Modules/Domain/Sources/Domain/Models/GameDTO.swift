@@ -11,7 +11,7 @@ public struct GameDTO: Sendable, Identifiable, Equatable, Hashable {
     public let id: Int
     public let coverImageURL: String?
     public let name: String
-    public let rating: String
+    public let rating: String?
     public let ratingCount: Int?
     public let aggregatedRating: String?
     public let aggregatedRatingCount: Int?
@@ -33,7 +33,7 @@ public struct GameDTO: Sendable, Identifiable, Equatable, Hashable {
         id: Int,
         coverImageURL: String?,
         name: String,
-        rating: String,
+        rating: String?,
         ratingCount: Int?,
         aggregatedRating: String?,
         aggregatedRatingCount: Int?,

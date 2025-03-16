@@ -30,7 +30,9 @@ struct GameDetailsOverview: View {
                     )
                 }
                 
-                GameDetailsRatingView()
+                if viewModel.ratingCount != nil || viewModel.aggregatedRating != nil {
+                    GameDetailsRatingView()
+                }
                 
                 if let summary = viewModel.summary {
                     ExpandableText(summary)

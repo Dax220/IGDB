@@ -22,7 +22,7 @@ class GameDetailsViewModel: ObservableObject {
     
     @Published var gameName: String
     @Published var imageURL: URL
-    @Published var rating: String
+    @Published var rating: String?
     @Published var ratingCount: Int?
     @Published var aggregatedRating: String?
     @Published var aggregatedRatingCount: Int?

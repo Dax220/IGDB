@@ -49,19 +49,22 @@ struct GamesListViewItem: View {
                     }
                     
                     HStack(spacing: 4) {
+                        
                         Text(game.genres?.first ?? "")
                             .font(.footnote)
                             .foregroundColor(.secondary)
                         
                         Spacer()
                         
-                        Text(game.rating)
-                            .font(.footnote)
-                            .fontWeight(.semibold)
-                        
-                        Image("star")
-                            .resizable()
-                            .frame(width: 16, height: 16)
+                        if let rating = game.rating {
+                            Text(rating)
+                                .font(.footnote)
+                                .fontWeight(.semibold)
+                            
+                            Image("star")
+                                .resizable()
+                                .frame(width: 16, height: 16)
+                        }
                     }
                 }
                 .lineLimit(1)

@@ -9,44 +9,17 @@ import IGDB_SWIFT_API
 
 public struct FetchGamesParameters: Sendable {
     let fields: [GameFields]?
-    let sorting: GameSorting?
     let limit: Int?
     let offset: Int?
     
     public init(
         fields: [GameFields]? = nil,
-        sorting: GameSorting? = nil,
         limit: Int? = nil,
         offset: Int? = nil
     ) {
         self.fields = fields
-        self.sorting = sorting
         self.limit = limit
         self.offset = offset
-    }
-}
-
-public struct GameSorting: Sendable {
-    let gameField: GameFields
-    let order: SortOrder
-    
-    public init(gameField: GameFields, order: SortOrder) {
-        self.gameField = gameField
-        self.order = order
-    }
-}
-
-public enum SortOrder: String, Sendable {
-    case asc
-    case desc
-    
-    var sort: Sort {
-        switch self {
-        case .asc:
-            return .ASCENDING
-        case .desc:
-            return .DESCENDING
-        }
     }
 }
  

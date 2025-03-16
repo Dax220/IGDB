@@ -90,7 +90,6 @@ class GamesListViewModel: ObservableObject {
             let games = try await repository.fetchGames(
                 parameters: FetchGamesParameters(
                     fields: GameFields.allCases,
-                    sorting: GameSorting(gameField: .rating, order: .desc),
                     limit: limit,
                     offset: offset
                 ),
