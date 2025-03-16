@@ -13,6 +13,7 @@ struct GamesListProgressItem: View {
     
     var body: some View {
         ZStack {
+            
             Rectangle()
                 .fill(Color.gray.opacity(0.1))
                 .frame(height: 200)

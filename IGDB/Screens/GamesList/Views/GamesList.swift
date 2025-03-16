@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import Domain
 
 struct GamesList: View {
     
     @EnvironmentObject var viewModel: GamesListViewModel
+    @Environment(\.navigationPath) private var path
     
     private let gridLayout = Array(repeating: GridItem(.flexible(), spacing: 10), count: 2)
     
@@ -20,6 +22,9 @@ struct GamesList: View {
                 
                 ForEach(viewModel.games) { game in
                     GamesListViewItem(game: game)
+                        .onTapGesture {
+                            path.wrappedValue.append(Screen.gameDetails(game))
+                        }
                 }
                 
                 if !viewModel.games.isEmpty {
@@ -38,7 +43,4 @@ struct GamesList: View {
     let viewModel = GamesListFactory.makeViewModel()
     GamesList()
         .environmentObject(viewModel)
-        .onAppear {
-            viewModel.loadGames()
-        }
 }
