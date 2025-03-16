@@ -8,9 +8,8 @@
 import SwiftUI
 import Domain
 
+
 struct GameDetails: View {
-    
-    @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewModel: GameDetailsViewModel
     
@@ -18,67 +17,64 @@ struct GameDetails: View {
     
     var body: some View {
         
-        ScrollView(showsIndicators: false) {
+        ZStack(alignment: .topLeading) {
             
-            VStack(spacing: 0) {
+            ScrollView(showsIndicators: false) {
                 
-                ZStack(alignment: .bottom) {
+                VStack(spacing: 0) {
                     
-                    StretchyHeader(imageURL: viewModel.imageURL)
-                    
-                    HStack {
-                        Text(viewModel.gameName)
-                            .font(.title)
-                            .foregroundColor(.white)
-                            .padding(8)
-                        Spacer()
+                    ZStack(alignment: .bottom) {
+                        
+                        StretchyHeader(imageURL: viewModel.imageURL)
+                        
+                        HStack {
+                            Text(viewModel.gameName)
+                                .font(.title)
+                                .foregroundColor(.white)
+                                .padding(8)
+                            Spacer()
+                        }
                     }
-                }
-                
-                GameDetailsOverview()
-                
-                if let trailer = viewModel.trailer {
-                    YouTubeVideoView(videoId: trailer.youtubeId)
-                        .frame(height: 200)
-                }
-                
-                VStack {
-                    CustomSegmentedControl(
-                        selectedTab: $viewModel.selectedTab, items: [
-                            .init(title: "About"),
-                            .init(title: "Videos"),
-                            .init(title: "Screenshots")
-                        ]
-                    )
-                    .padding(8)
-                }
-                
-                VStack {
-                    switch viewModel.selectedTab {
-                    case .about:
-                        GameDetailsAbout()
-                    case .videos:
-                        GameDetailsVideos()
-                    case .screenshots:
-                        GameDetailsScreenshots()
-                    case .releases:
-                        EmptyView()
+                    
+                    GameDetailsOverview()
+                    
+                    if let trailer = viewModel.trailer {
+                        YouTubeVideoView(videoId: trailer.youtubeId)
+                            .frame(height: 200)
+                    }
+                    
+                    VStack {
+                        CustomSegmentedControl(
+                            selectedTab: $viewModel.selectedTab, items: [
+                                .init(title: "About"),
+                                .init(title: "Videos"),
+                                .init(title: "Screenshots")
+                            ]
+                        )
+                        .padding(8)
+                    }
+                    
+                    VStack {
+                        switch viewModel.selectedTab {
+                        case .about:
+                            GameDetailsAbout()
+                        case .videos:
+                            GameDetailsVideos()
+                        case .screenshots:
+                            GameDetailsScreenshots()
+                        case .releases:
+                            EmptyView()
+                        }
                     }
                 }
             }
+            .edgesIgnoringSafeArea(.top)
             
+            BackButton()
         }
         .environmentObject(viewModel)
-//        .toolbar(.hidden)
+        .toolbar(.hidden)
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading:
-                                Image(systemName: "chevron.left")
-            .foregroundColor(.blue)
-            .onTapGesture {
-                self.presentationMode.wrappedValue.dismiss()
-            }
-        )
-        .edgesIgnoringSafeArea(.top)
     }
 }
 
