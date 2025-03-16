@@ -10,8 +10,12 @@ public protocol RepositoryI {
 public protocol RemoteRepositoryI: RepositoryI { }
 
 public protocol LocalRepositoryI: RepositoryI {
-    func saveGames(_ games: [Domain.GameDTO]) async throws
+    func saveGames(_ games: [GameDTO]) async throws
     func deleteAllGames() async throws
 }
 
-public protocol RepositoryFacadeI: RemoteRepositoryI, LocalRepositoryI { }
+public protocol RepositoryFacadeI {
+    func fetchGames(parameters: FetchGamesParameters, remotely: Bool) async throws -> [GameDTO]
+    func saveGames(_ games: [GameDTO]) async throws
+    func deleteAllGames() async throws
+}

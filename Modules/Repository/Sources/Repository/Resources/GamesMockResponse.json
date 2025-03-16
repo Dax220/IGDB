@@ -1,21 +1,185 @@
 [
     {
-        "id": 199038,
+        "id": 173172,
+        "aggregated_rating": 90.0,
+        "aggregated_rating_count": 3,
         "cover": {
-            "id": 219600,
-            "image_id": "co4pg0"
+            "id": 184733,
+            "image_id": "co3yjh"
         },
-        "genres": [
+        "game_modes": [
             {
-                "id": 5,
-                "name": "Shooter"
+                "id": 1,
+                "name": "Mode 1"
             },
             {
-                "id": 10,
-                "name": "Racing"
+                "id": 1,
+                "name": "Mode 2"
             }
         ],
-        "name": "San Andreas Multiplayer",
-        "rating": 99.89715484285666
+        "genres": [
+            {
+                "id": 9,
+                "name": "Puzzle"
+            },
+            {
+                "id": 31,
+                "name": "Adventure"
+            },
+            {
+                "id": 32,
+                "name": "Indie"
+            }
+        ],
+        "involved_companies": [
+            {
+                "id": 240865,
+                "company": {
+                    "id": 6209,
+                    "name": "developer 1"
+                },
+                "developer": true,
+                "porting": false,
+                "publisher": false,
+                "supporting": false
+            },
+            {
+                "id": 240865,
+                "company": {
+                    "id": 6209,
+                    "name": "developer 2"
+                },
+                "developer": true,
+                "porting": false,
+                "publisher": false,
+                "supporting": false
+            },
+            {
+                "id": 240865,
+                "company": {
+                    "id": 6209,
+                    "name": "porting 1"
+                },
+                "developer": false,
+                "porting": true,
+                "publisher": false,
+                "supporting": false
+            },
+            {
+                "id": 240865,
+                "company": {
+                    "id": 6209,
+                    "name": "porting 2"
+                },
+                "developer": false,
+                "porting": true,
+                "publisher": false,
+                "supporting": false
+            },
+            {
+                "id": 240865,
+                "company": {
+                    "id": 6209,
+                    "name": "supporting 1"
+                },
+                "developer": false,
+                "porting": false,
+                "publisher": false,
+                "supporting": true
+            },
+            {
+                "id": 240865,
+                "company": {
+                    "id": 6209,
+                    "name": "supporting 2"
+                },
+                "developer": false,
+                "porting": false,
+                "publisher": false,
+                "supporting": true
+            },
+            {
+                "id": 240866,
+                "company": {
+                    "id": 11662,
+                    "name": "publisher 1"
+                },
+                "developer": false,
+                "porting": false,
+                "publisher": true,
+                "supporting": false
+            },
+            {
+                "id": 240866,
+                "company": {
+                    "id": 11662,
+                    "name": "publisher 2"
+                },
+                "developer": false,
+                "porting": false,
+                "publisher": true,
+                "supporting": false
+            }
+        ],
+        "name": "Outer Wilds: Archaeologist Edition",
+        "platforms": [
+            {
+                "id": 169,
+                "name": "Xbox Series X|S"
+            },
+            {
+                "id": 48,
+                "name": "PlayStation 4"
+            },
+            {
+                "id": 6,
+                "name": "PC (Microsoft Windows)"
+            }
+        ],
+        "player_perspectives": [
+            {
+                "id": 1,
+                "name": "Perspective 1"
+            },
+            {
+                "id": 1,
+                "name": "Perspective 2"
+            }
+        ],
+        "rating": 99.54300780981822,
+        "rating_count": 11,
+        "screenshots": [
+            {
+                "id": 646636,
+                "image_id": "scduy4"
+            },
+            {
+                "id": 646638,
+                "image_id": "scduy6"
+            },
+            {
+                "id": 646639,
+                "image_id": "scduy7"
+            },
+        ],
+        "storyline": "Test storyline",
+        "summary": "Test summary",
+        "themes": [
+            {
+                "id": 18,
+                "name": "Theme 1"
+            },
+            {
+                "id": 18,
+                "name": "Theme 2"
+            }
+        ],
+        "videos": [
+            {
+                "id": 101536,
+                "name": "Trailer",
+                "video_id": "yniQwQlyUl8"
+            }
+        ]
     }
 ]

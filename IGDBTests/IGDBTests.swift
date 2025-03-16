@@ -7,30 +7,77 @@
 
 import XCTest
 @testable import IGDB
+@testable import Repository
 
 final class IGDBTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testLoadItemsOnline() async throws {
+        let repo = MockRepositoryFactory.shared.makeRepository() as! MockRepositoryFacade
+        let networkMonitor = MockRepositoryFactory.shared.makeNetworkMonitor() as! MockNetworkMonitor
+        MockNetworkMonitor.isNetworkAvailable = true
+        repo.reset()
+        _ = GamesListViewModel(repository: repo, networkMonitor: networkMonitor)
+        
+        try await Task.sleep(for: .seconds(1))
+        
+        XCTAssertEqual(repo.fetchRemoteCalled, true)
+        XCTAssertEqual(repo.fetchLocalCalled, false)
+        XCTAssertEqual(repo.deleteGamesCalled, true)
+        XCTAssertEqual(repo.saveGamesCalled, true)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testLoadItemsOffline() async throws {
+        let repo = MockRepositoryFactory.shared.makeRepository() as! MockRepositoryFacade
+        let networkMonitor = MockRepositoryFactory.shared.makeNetworkMonitor() as! MockNetworkMonitor
+        MockNetworkMonitor.isNetworkAvailable = false
+        repo.reset()
+        _ = GamesListViewModel(repository: repo, networkMonitor: networkMonitor)
+        
+        try await Task.sleep(for: .seconds(1))
+        
+        XCTAssertEqual(repo.fetchRemoteCalled, false)
+        XCTAssertEqual(repo.fetchLocalCalled, true)
+        XCTAssertEqual(repo.deleteGamesCalled, false)
+        XCTAssertEqual(repo.saveGamesCalled, false)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testLoadMoreGamesOnline() async throws {
+        let repo = MockRepositoryFactory.shared.makeRepository() as! MockRepositoryFacade
+        let networkMonitor = MockRepositoryFactory.shared.makeNetworkMonitor() as! MockNetworkMonitor
+        MockNetworkMonitor.isNetworkAvailable = true
+        
+        let viewModel = GamesListViewModel(repository: repo, networkMonitor: networkMonitor)
+        
+        try await Task.sleep(for: .seconds(1))
+        
+        repo.reset()
+        viewModel.loadingState = .loaded
+        viewModel.loadMoreGames()
+        try await Task.sleep(for: .seconds(1))
+        
+        XCTAssertEqual(repo.fetchRemoteCalled, true)
+        XCTAssertEqual(repo.fetchLocalCalled, false)
+        XCTAssertEqual(repo.deleteGamesCalled, false)
+        XCTAssertEqual(repo.saveGamesCalled, true)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testLoadMoreGamesOffline() async throws {
+        let repo = MockRepositoryFactory.shared.makeRepository() as! MockRepositoryFacade
+        let networkMonitor = MockRepositoryFactory.shared.makeNetworkMonitor() as! MockNetworkMonitor
+        MockNetworkMonitor.isNetworkAvailable = false
+        
+        let viewModel = GamesListViewModel(repository: repo, networkMonitor: networkMonitor)
+        
+        try await Task.sleep(for: .seconds(1))
+        
+        repo.reset()
+        viewModel.loadingState = .loaded
+        viewModel.loadMoreGames()
+        try await Task.sleep(for: .seconds(1))
+        
+        XCTAssertEqual(repo.fetchRemoteCalled, false)
+        XCTAssertEqual(repo.fetchLocalCalled, true)
+        XCTAssertEqual(repo.deleteGamesCalled, false)
+        XCTAssertEqual(repo.saveGamesCalled, false)
     }
-
 }

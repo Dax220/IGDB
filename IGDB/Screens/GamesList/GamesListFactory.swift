@@ -7,6 +7,7 @@
 
 import Foundation
 import Repository
+import Core
 
 class GamesListFactory {
     
@@ -17,6 +18,7 @@ class GamesListFactory {
     
     static func makeViewModel() -> GamesListViewModel {
         let repository = DIContainer.shared.resolve(RepositoryFacadeI.self)
-        return GamesListViewModel(repository: repository)
+        let networkMonitor = DIContainer.shared.resolve(NetworkMonitorI.self)
+        return GamesListViewModel(repository: repository, networkMonitor: networkMonitor)
     }
 }

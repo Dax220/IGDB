@@ -15,6 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Domain"),
+        .package(path: "../Core"),
         .package(url: "https://github.com/husnjak/IGDB-SWIFT-API.git", from: "0.4.5"),
         .package(url: "https://github.com/Swinject/Swinject.git", from: "2.9.1"),
     ],
@@ -23,7 +24,7 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "Repository",
-            dependencies: ["Domain", "IGDB-SWIFT-API", "Swinject"],
+            dependencies: ["Domain", "Core", "IGDB-SWIFT-API", "Swinject"],
             resources: [.process("Resources")]
         ),
         .testTarget(
