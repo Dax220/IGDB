@@ -17,12 +17,14 @@ struct GameDetailsVideos: View {
             ForEach(viewModel.videos, id: \.self) { video in
                 
                 VStack(alignment: .leading, spacing: 4) {
+                    
                     if let title = video.title {
                         Text(title)
                             .font(.caption)
                             .padding(.horizontal, 8)
                             .frame(alignment: .leading)
                     }
+                    
                     YouTubeVideoView(videoId: video.youtubeId)
                         .frame(height: 200)
                 }
