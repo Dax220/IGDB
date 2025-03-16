@@ -31,10 +31,10 @@ class RepositoryFacade: RepositoryFacadeI {
     
     public func fetchGames(parameters: FetchGamesParameters) async throws -> [GameDTO] {
         if isInternetAvailable {
-            return try await remoteRepository.fetchGames(parameters: parameters)
+            return try await fetchRemotely(parameters: parameters)
         }
         try? await Task.sleep(nanoseconds: 1_000_000_000)
-        return try await localRepository.fetchGames(parameters: parameters)
+        return try await fetchLocaly(parameters: parameters)
     }
     
     public func saveGames(_ games: [GameDTO]) async throws {
@@ -47,5 +47,13 @@ class RepositoryFacade: RepositoryFacadeI {
         if isInternetAvailable {
             try await localRepository.deleteAllGames()
         }
+    }
+    
+    internal func fetchRemotely(parameters: FetchGamesParameters) async throws -> [GameDTO] {
+        try await remoteRepository.fetchGames(parameters: parameters)
+    }
+    
+    internal func fetchLocaly(parameters: FetchGamesParameters) async throws -> [GameDTO] {
+        try await localRepository.fetchGames(parameters: parameters)
     }
 }

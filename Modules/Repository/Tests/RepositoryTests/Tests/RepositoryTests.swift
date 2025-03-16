@@ -1,24 +1,64 @@
 import XCTest
 @testable import Repository
-import Foundation
+import Core
+import Domain
+
 
 final class RepositoryTests: XCTestCase {
-
-    func testRemoteRepository() async throws {
-        let repo = RemoteRepository(
-            apiCalypseBuilder: APICalypseBuilder(),
-            wrapper: MockAsyncIGDBWrapper(),
-            mapper: RemoteGamesMapper(
-                ratingFormatter: RatingFormatter()
-            )
-        )
-        let game = try await repo.fetchGames(parameters: FetchGamesParameters()).first
+    
+    func testRemoteOnline() async throws {
+        let remoteRepo = MockRepositoryFactory.shared.makeRepository()
+        MockNetworkMonitor.isNetworkAvailable = true
+        let remoteGame = try await remoteRepo.fetchGames(parameters: FetchGamesParameters()).first
+        testGame(game: remoteGame)
+    }
+    
+    func testFetchAndSaveDataForOfflineCase() async throws {
+        let repo = MockRepositoryFactory.shared.makeRepository() as! MockRepositoryFacade
+        MockNetworkMonitor.isNetworkAvailable = true
+        let remoteGame = try await repo.fetchGames(parameters: FetchGamesParameters()).first
+        try await repo.saveGames([remoteGame!])
+        
+        XCTAssertTrue(MockNetworkMonitor.isNetworkAvailable == true)
+        XCTAssertTrue(repo.fetchRemoteCalled == true)
+        XCTAssertTrue(repo.fetchLocalCalled == false)
+        
+        MockNetworkMonitor.isNetworkAvailable = false
+        let localGame = try await repo.fetchGames(parameters: FetchGamesParameters()).first
+        
+        XCTAssertTrue(MockNetworkMonitor.isNetworkAvailable == false)
+        XCTAssertTrue(repo.fetchRemoteCalled == false)
+        XCTAssertTrue(repo.fetchLocalCalled == true)
+        testGame(game: localGame)
+    }
+    
+    func testGame(game: GameDTO?) {
         XCTAssertNotNil(game)
-        XCTAssertEqual(game!.id, 199038)
-        XCTAssertEqual(game!.coverImageURL, "https://images.igdb.com/igdb/image/upload/t_720p/co4pg0.png")
-        XCTAssertEqual(game!.name, "San Andreas Multiplayer")
-        XCTAssertEqual(game!.rating, "10")
-        XCTAssertEqual(Set(game!.genres ?? []), Set(["Racing", "Shooter"]))
+        XCTAssertEqual(game?.id, 173172)
+        XCTAssertEqual(game?.coverImageURL, "https://images.igdb.com/igdb/image/upload/t_cover_big/co3yjh.png")
+        XCTAssertEqual(game?.name, "Outer Wilds: Archaeologist Edition")
+        XCTAssertEqual(game?.rating, "10")
+        XCTAssertEqual(game?.ratingCount, 11)
+        XCTAssertEqual(game?.aggregatedRating, "9")
+        XCTAssertEqual(game?.aggregatedRatingCount, 3)
+        XCTAssertEqual(Set(game?.genres ?? []), Set(["Puzzle", "Adventure", "Indie"]))
+        XCTAssertEqual(Set(game?.platforms ?? []), Set(["Xbox Series X|S", "PlayStation 4", "PC (Microsoft Windows)"]))
+        XCTAssertEqual(game?.summary, "Test summary")
+        XCTAssertEqual(Set(game?.mainDevelopers ?? []), Set(["developer 1", "developer 2"]))
+        XCTAssertEqual(Set(game?.portingDevelopers ?? []), Set(["porting 1", "porting 2"]))
+        XCTAssertEqual(Set(game?.supportingDevelopers ?? []), Set(["supporting 1", "supporting 2"]))
+        XCTAssertEqual(Set(game?.publishers ?? []), Set(["publisher 1", "publisher 2"]))
+        XCTAssertEqual(Set(game?.themes ?? []), Set(["Theme 1", "Theme 2"]))
+        XCTAssertEqual(Set(game?.gameModes ?? []), Set(["Mode 1", "Mode 2"]))
+        XCTAssertEqual(Set(game?.playerPerspectives ?? []), Set(["Perspective 1", "Perspective 2"]))
+        XCTAssertEqual(game?.storyline, "Test storyline")
+        XCTAssertEqual(game?.videos?.first?.title, "Trailer")
+        XCTAssertEqual(game?.videos?.first?.youtubeId, "yniQwQlyUl8")
+        XCTAssertEqual(Set(game?.screenshots ?? []), Set([
+            "https://images.igdb.com/igdb/image/upload/t_screenshot_med/scduy4.png",
+            "https://images.igdb.com/igdb/image/upload/t_screenshot_med/scduy6.png",
+            "https://images.igdb.com/igdb/image/upload/t_screenshot_med/scduy7.png"
+        ]))
     }
     
     func testAPICalypseBuilder() {

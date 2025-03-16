@@ -17,7 +17,8 @@ public class RepositoryDI: Assembly {
         
         container.register(PersistenceController.self) { _ in
             PersistenceController()
-        }.inObjectScope(.container)
+        }
+        .inObjectScope(.container)
         
         container.register(AsyncIGDBWrapperI.self) { _ in
             let wrapper = IGDBWrapper(
