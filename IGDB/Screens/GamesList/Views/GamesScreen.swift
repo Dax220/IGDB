@@ -30,12 +30,11 @@ struct GamesScreen: View {
                     GamesListUnavailable()
                 }
             }
-            .onAppear {
-                viewModel.loadGames()
-            }
             .environmentObject(viewModel)
         }
         .animation(.spring(duration: 0.1), value: viewModel.loadingState)
+        .navigationTitle("gamesscreen.title")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

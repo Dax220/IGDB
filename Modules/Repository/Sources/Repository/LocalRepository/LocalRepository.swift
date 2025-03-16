@@ -58,17 +58,46 @@ extension LocalRepository {
     
     private func createCoreDataGame(gameDTOs: [GameDTO]) async throws {
         return try await moc.perform {
-            for (idx, gameDTO) in gameDTOs.enumerated() {
+            for gameDTO in gameDTOs {
                 let game = Game(context: self.moc)
                 game.id = Int32(gameDTO.id)
                 game.name = gameDTO.name
                 game.rating = gameDTO.rating
+                if let ratingCount = gameDTO.ratingCount {
+                    game.ratingCount = Int32(ratingCount)
+                }
+                game.aggregatedRating = gameDTO.aggregatedRating
+                if let aggregatedRatingCount = gameDTO.aggregatedRatingCount {
+                    game.aggregatedRatingCount = Int32(aggregatedRatingCount)
+                }
                 game.coverImageURL = gameDTO.coverImageURL
-                game.genres = gameDTO.genres
+                game.genres = NSArray(array: gameDTO.genres ?? [])
+                game.platforms = NSArray(array: gameDTO.platforms ?? [])
+                game.summary = gameDTO.summary
+                game.mainDevelopers = NSArray(array: gameDTO.mainDevelopers ?? [])
+                game.portingDevelopers = NSArray(array: gameDTO.portingDevelopers ?? [])
+                game.supportingDevelopers = NSArray(array: gameDTO.supportingDevelopers ?? [])
+                game.publishers = NSArray(array: gameDTO.publishers ?? [])
+                game.themes = NSArray(array: gameDTO.themes ?? [])
+                game.gameModes = NSArray(array: gameDTO.gameModes ?? [])
+                game.playerPerspectives = NSArray(array: gameDTO.playerPerspectives ?? [])
+                game.storyline = gameDTO.storyline
+                for videoDTO in gameDTO.videos ?? [] {
+                    game.videos?.adding(self.createVideosForGame(game: game, videoDTO: videoDTO))
+                }
+                game.screenshots = NSArray(array: gameDTO.screenshots ?? [])
                 game.createdAt = Date()
             }
             try self.saveContext()
         }
+    }
+    
+    private func createVideosForGame(game: Game, videoDTO: VideoDTO) -> Video {
+        let video = Video(context: self.moc)
+        video.game = game
+        video.title = videoDTO.title
+        video.videoId = videoDTO.youtubeId
+        return video
     }
     
     private func fetch<T: NSManagedObject>(
@@ -105,15 +134,4 @@ extension LocalRepository {
     }
 }
 
-class LocalGamesMapper {
-    
-    func map(from game: Game) -> GameDTO {
-        GameDTO(
-            id: Int(game.id),
-            coverImageURL: game.coverImageURL,
-            name: game.name ?? "",
-            rating: game.rating ?? "",
-            genres: game.genres
-        )
-    }
-}
+

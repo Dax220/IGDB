@@ -36,6 +36,7 @@ class GamesListViewModel: ObservableObject {
     
     init(repository: RepositoryFacadeI) {
         self.repository = repository
+        loadGames()
     }
     
     func loadGames() {
@@ -46,6 +47,7 @@ class GamesListViewModel: ObservableObject {
                 let fetchedgames = try await fetchGames(limit: limit, offset: 0)
                 self.games = fetchedgames
                 if self.games.isEmpty {
+                    setLoadingState(.initialLoadingError)
                     throw AppError.noGames
                 }
                 Task.detached(priority: .utility) {

@@ -33,6 +33,7 @@ class RepositoryFacade: RepositoryFacadeI {
         if isInternetAvailable {
             return try await remoteRepository.fetchGames(parameters: parameters)
         }
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
         return try await localRepository.fetchGames(parameters: parameters)
     }
     

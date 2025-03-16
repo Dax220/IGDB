@@ -13,7 +13,6 @@ struct GamesListViewItem: View {
     
     @State var height: CGFloat = 250
     var game: GameDTO
-    private let imageRatio = 0.75
     
     init(game: GameDTO) {
         self.game = game
@@ -71,24 +70,9 @@ struct GamesListViewItem: View {
         }
         .cornerRadius(5)
         .shadow(radius: 5)
-//        .overlay(
-//            GeometryReader { proxy in
-//                Color.clear.preference(key: RectPreferenceKey.self, value: proxy.frame(in: .global))
-//            }
-//        )
-//        .onPreferenceChange(RectPreferenceKey.self) { value in
-//            let newHeight = value.width / imageRatio
-//            if height != newHeight {
-//                Task { @MainActor in
-//                    height = newHeight
-//                }
-//            }
-//        }
     }
 }
 
 #Preview {
-    GamesListViewItem(
-        game: GameDTO(id: 1, coverImageURL: "", name: "The witcher 3: Wild Hunt", rating: "9.2", genres: ["Role-playing (RPG)"])
-    )
+    GamesListViewItem(game: GameDTO.dummy)
 }

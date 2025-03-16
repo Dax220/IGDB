@@ -6,14 +6,27 @@
 //
 
 import SwiftUI
-import CoreData
 import Domain
-import IGDB_SWIFT_API
-import Repository
+
+enum Screen: Equatable, Hashable {
+    case gameDetails(GameDTO)
+}
 
 struct ContentView: View {
+    
+    @State private var path = NavigationPath()
+    
     var body: some View {
-        GamesListFactory.makeView()
+        NavigationStack(path: $path) {
+            GamesListFactory.makeView()
+                .navigationDestination(for: Screen.self) { screen in
+                    switch screen {
+                    case .gameDetails(let game):
+                        GameDetailsFactory.makeView(for: game)
+                    }
+                }
+        }
+        .environment(\.navigationPath, $path)
     }
 }
 
