@@ -47,6 +47,7 @@ struct GameDetailsAbout: View {
             }
             .padding(8)
             .background(.white)
+            .cornerRadius(5)
             .shadow(radius: 5)
         }
         .padding(8)

@@ -36,6 +36,8 @@ struct ExpandableText: View {
             
             if isTruncated == true {
                 Text(isExpanded ? "expandable-text.less" : "expandable-text.more")
+                    .foregroundColor(.appAccent)
+                    .fontWeight(.bold)
                     .onTapGesture {
                         isExpanded.toggle()
                     }

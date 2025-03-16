@@ -17,7 +17,7 @@ struct BackButton: View {
         }) {
             Image(systemName: "chevron.left")
                 .font(.system(size: 20, weight: .medium))
-                .foregroundColor(.white)
+                .foregroundColor(.appAccent)
                 .padding(10)
                 .background(
                     VisualEffectBlur(blurStyle: .systemUltraThinMaterialDark)

@@ -57,5 +57,6 @@ struct GameDetailsRatingView: View {
         .padding(8)
         .background(Color.black)
         .foregroundColor(.white)
+        .cornerRadius(8)
     }
 }

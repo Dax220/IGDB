@@ -13,12 +13,12 @@ struct GamesList: View {
     @EnvironmentObject var viewModel: GamesListViewModel
     @Environment(\.navigationPath) private var path
     
-    private let gridLayout = Array(repeating: GridItem(.flexible(), spacing: 10), count: 2)
+    let layout = Array(repeating: GridItem(.flexible(), spacing: GridLayouGuide.spacing), count: GridLayouGuide.columns)
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             
-            LazyVGrid(columns: gridLayout) {
+            LazyVGrid(columns: layout) {
                 
                 ForEach(viewModel.games) { game in
                     GamesListViewItem(game: game)
@@ -31,7 +31,7 @@ struct GamesList: View {
                     GamesListProgressItem()
                 }
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, GridLayouGuide.HPadding)
         }
         .refreshable {
             viewModel.loadGames()

@@ -39,7 +39,7 @@ struct GameDetailsOverview: View {
                 }
             }
             .padding(8)
-            .background(Color(red: 51.0/255.0, green: 58.0/255.0, blue: 69.0/255.0))
+            .background(.appGrayBackground)
         }
         .frame(alignment: .leading)
     }

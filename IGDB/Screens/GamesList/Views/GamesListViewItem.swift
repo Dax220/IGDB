@@ -11,7 +11,7 @@ import Domain
 
 struct GamesListViewItem: View {
     
-    @State var height: CGFloat = 250
+    @State var height: CGFloat = GridLayouGuide.itemHeight
     var game: GameDTO
     
     init(game: GameDTO) {

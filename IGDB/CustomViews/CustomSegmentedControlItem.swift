@@ -11,7 +11,7 @@ struct CustomSegmentedControlItem {
     var title: LocalizedStringKey
     var backgroundColor: Color = .black
     var titleColor: Color = .white
-    var selectedBackgroundColor: Color = .gray
+    var selectedBackgroundColor: Color = .appAccent
     var selectedTitleColor: Color = .white
 }
 
@@ -33,7 +33,7 @@ struct CustomSegmentedControl<T: RawRepresentable>: View where T.RawValue == Int
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
                     .background(
-                        Rectangle()
+                        RoundedRectangle(cornerRadius: 10)
                             .fill(
                                 selectedTab.rawValue == index
                                 ? item.selectedBackgroundColor
@@ -54,7 +54,7 @@ struct CustomSegmentedControl<T: RawRepresentable>: View where T.RawValue == Int
         }
         .frame(height: 46)
         .background(
-            Rectangle()
+            RoundedRectangle(cornerRadius: 13)
                 .fill(bgColor)
         )
         .font(font)
