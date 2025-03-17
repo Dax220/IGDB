@@ -25,6 +25,10 @@ class DIContainer {
     
     func register() {
         CoreDI().assemble(container: container)
-        RepositoryDI().assemble(container: container)
+        RepositoryDI(
+            clientID: ENV.value(for: .apiClientId),
+            accessToken: ENV.value(for: .apiAccessToken),
+            popularityType: ENV.value(for: .popularityType)
+        ).assemble(container: container)
     }
 }

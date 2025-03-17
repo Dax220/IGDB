@@ -40,9 +40,22 @@
 		E8CC69762D80DC0800EF9A67 /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E8A47C042D87A1D700D83B96 /* Exceptions for "IGDB" folder in "IGDB" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E8CC692D2D80D8AB00EF9A67 /* IGDB */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E8CC69302D80D8AB00EF9A67 /* IGDB */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E8A47C042D87A1D700D83B96 /* Exceptions for "IGDB" folder in "IGDB" target */,
+			);
 			path = IGDB;
 			sourceTree = "<group>";
 		};
@@ -436,6 +449,8 @@
 		};
 		E8CC69582D80D8AC00EF9A67 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = E8CC69302D80D8AB00EF9A67 /* IGDB */;
+			baseConfigurationReferenceRelativePath = Config.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -445,6 +460,7 @@
 				DEVELOPMENT_TEAM = U845R9GB57;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IGDB/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -465,6 +481,8 @@
 		};
 		E8CC69592D80D8AC00EF9A67 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = E8CC69302D80D8AB00EF9A67 /* IGDB */;
+			baseConfigurationReferenceRelativePath = Config.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -474,6 +492,7 @@
 				DEVELOPMENT_TEAM = U845R9GB57;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IGDB/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -15,7 +15,12 @@ class MockRepositoryFactory {
     let container = Container()
     
     init() {
-        RepositoryDI().assemble(container: container)
+        RepositoryDI(
+            clientID: "",
+            accessToken: "",
+            popularityType: ""
+        )
+        .assemble(container: container)
         
         container.register(PersistenceController.self) { _ in
             PersistenceController(inMemory: true)

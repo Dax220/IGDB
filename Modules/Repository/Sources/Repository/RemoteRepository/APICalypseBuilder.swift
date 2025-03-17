@@ -9,6 +9,12 @@ import IGDB_SWIFT_API
 
 class APICalypseBuilder {
     
+    private let popularityType: String
+    
+    init(popularityType: String) {
+        self.popularityType = popularityType
+    }
+    
     func buildApiCalypseForGames(parameters: FetchGamesParameters) -> APICalypse {
         var apicalypse = APICalypse()
         if let fields = parameters.fields {
@@ -26,7 +32,7 @@ class APICalypseBuilder {
         if let offset = parameters.offset {
             apicalypse = apicalypse.offset(value: Int32(offset))
         }
-        apicalypse = apicalypse.where(query: "popularity_type = 3")
+        apicalypse = apicalypse.where(query: "popularity_type = \(popularityType)")
         apicalypse = apicalypse.sort(field: "value", order: .DESCENDING)
         return apicalypse
     }
