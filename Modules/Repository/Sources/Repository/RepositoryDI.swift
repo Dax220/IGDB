@@ -11,7 +11,19 @@ import Core
 
 public class RepositoryDI: Assembly {
     
-    public init() {}
+    private let clientID: String
+    private let accessToken: String
+    private let popularityType: String
+    
+    public init(
+        clientID: String,
+        accessToken: String,
+        popularityType: String
+    ) {
+        self.clientID = clientID
+        self.accessToken = accessToken
+        self.popularityType = popularityType
+    }
     
     public func assemble(container: Container) {
         
@@ -22,8 +34,8 @@ public class RepositoryDI: Assembly {
         
         container.register(AsyncIGDBWrapperI.self) { _ in
             let wrapper = IGDBWrapper(
-                clientID: "zzs4gfiji5brwwulue73l8ug1vjbhr", 
-                accessToken: "y91urcv3rtjwpgk685on6s4h29mlkn"
+                clientID: self.clientID,
+                accessToken: self.accessToken
             )
             return AsyncIGDBWrapper(wrapper: wrapper)
         }
@@ -32,7 +44,7 @@ public class RepositoryDI: Assembly {
             let asyncWrapper = r.resolve(AsyncIGDBWrapperI.self)!
             let ratingFormatter = RatingFormatter()
             let mapper = RemoteGamesMapper(ratingFormatter: ratingFormatter)
-            let apiCalypseBuilder = APICalypseBuilder()
+            let apiCalypseBuilder = APICalypseBuilder(popularityType: self.popularityType)
             return RemoteRepository(
                 apiCalypseBuilder: apiCalypseBuilder,
                 wrapper: asyncWrapper, mapper: mapper

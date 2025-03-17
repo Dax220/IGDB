@@ -60,15 +60,18 @@ final class RepositoryTests: XCTestCase {
         let builder = APICalypseBuilder()
         let parameters = FetchGamesParameters(
             fields: [.name, .rating],
-            sorting: GameSorting(gameField: .rating, order: .asc),
             limit: 10,
             offset: 20
         )
-        let query = builder.buildApiCalypse(parameters: parameters).buildQuery()
-        XCTAssertTrue(query.contains("f name,rating;"))
-        XCTAssertTrue(query.contains("s rating asc;"))
-        XCTAssertTrue(query.contains("l 10;"))
-        XCTAssertTrue(query.contains("o 20;"))
+        let gamesQuery = builder.buildApiCalypseForGames(parameters: parameters).buildQuery()
+        XCTAssertTrue(gamesQuery.contains("f name,rating;"))
+        
+        let primitivesQuery = builder.buildApiCalypseForPrimitives(parameters: parameters).buildQuery()
+        XCTAssertTrue(primitivesQuery.contains("f game_id"))
+        XCTAssertTrue(primitivesQuery.contains("l 10"))
+        XCTAssertTrue(primitivesQuery.contains("o 20"))
+        XCTAssertTrue(primitivesQuery.contains("w popularity_type = "))
+        XCTAssertTrue(primitivesQuery.contains("s value desc"))
     }
     
     func testRatingFormatter() {

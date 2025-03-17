@@ -11,7 +11,7 @@ struct GameServerDTO: Decodable {
     let id: Int
     let cover: CoverServerDTO?
     let name: String
-    let rating: Double
+    let rating: Double?
     let ratingCount: Int?
     let aggregatedRating: Double?
     let aggregatedRatingCount: Int?

@@ -9,4 +9,5 @@ import IGDB_SWIFT_API
 
 protocol AsyncIGDBWrapperI {
     func jsonGames(apiCalypse: APICalypse) async throws -> String
+    func jsonPopularPrimitives(apiCalypse: APICalypse) async throws -> String
 }

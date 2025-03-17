@@ -21,7 +21,9 @@ class RemoteGamesMapper {
             id: serverDTO.id,
             coverImageURL: imageBuilder(imageID: serverDTO.cover?.imageId ?? "", size: .COVER_BIG),
             name: serverDTO.name,
-            rating: ratingFormatter.roundRating(value: serverDTO.rating),
+            rating: serverDTO.rating == nil
+                ? nil
+                : ratingFormatter.roundRating(value: serverDTO.rating!),
             ratingCount: serverDTO.ratingCount,
             aggregatedRating: serverDTO.aggregatedRating == nil
                 ? nil

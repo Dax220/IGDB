@@ -1,0 +1,112 @@
+[
+    {
+        "id": 634,
+        "game_id": 1020,
+        "popularity_type": 3,
+        "popularity_source": 121,
+        "value": 0.004842303184845,
+        "calculated_at": 1742087099,
+        "created_at": 1718187103,
+        "updated_at": 1742087110,
+        "external_popularity_source": 121
+    },
+    {
+        "id": 5507,
+        "game_id": 25076,
+        "popularity_type": 3,
+        "popularity_source": 121,
+        "value": 0.004739275457508,
+        "calculated_at": 1742087099,
+        "created_at": 1718187261,
+        "updated_at": 1742087194,
+        "external_popularity_source": 121
+    },
+    {
+        "id": 10079,
+        "game_id": 119277,
+        "popularity_type": 3,
+        "popularity_source": 121,
+        "value": 0.004275650684490,
+        "calculated_at": 1742087099,
+        "created_at": 1718187365,
+        "updated_at": 1742087260,
+        "external_popularity_source": 121
+    },
+    {
+        "id": 95,
+        "game_id": 121,
+        "popularity_type": 3,
+        "popularity_source": 121,
+        "value": 0.004172622957153,
+        "calculated_at": 1742087099,
+        "created_at": 1718187081,
+        "updated_at": 1742087100,
+        "external_popularity_source": 121
+    },
+    {
+        "id": 1099,
+        "game_id": 1877,
+        "popularity_type": 3,
+        "popularity_source": 121,
+        "value": 0.004018081366148,
+        "calculated_at": 1742087099,
+        "created_at": 1718187122,
+        "updated_at": 1742087118,
+        "external_popularity_source": 121
+    },
+    {
+        "id": 1136,
+        "game_id": 1942,
+        "popularity_type": 3,
+        "popularity_source": 121,
+        "value": 0.003863539775142,
+        "calculated_at": 1742087099,
+        "created_at": 1718187124,
+        "updated_at": 1742087119,
+        "external_popularity_source": 121
+    },
+    {
+        "id": 2662,
+        "game_id": 7346,
+        "popularity_type": 3,
+        "popularity_source": 121,
+        "value": 0.003683241252302,
+        "calculated_at": 1742087099,
+        "created_at": 1718187187,
+        "updated_at": 1742087145,
+        "external_popularity_source": 121
+    },
+    {
+        "id": 4434,
+        "game_id": 17269,
+        "popularity_type": 3,
+        "popularity_source": 121,
+        "value": 0.003593091990882,
+        "calculated_at": 1742087099,
+        "created_at": 1718187237,
+        "updated_at": 1742087176,
+        "external_popularity_source": 121
+    },
+    {
+        "id": 1115,
+        "game_id": 1905,
+        "popularity_type": 3,
+        "popularity_source": 121,
+        "value": 0.003593091990882,
+        "calculated_at": 1742087099,
+        "created_at": 1718187123,
+        "updated_at": 1742087118,
+        "external_popularity_source": 121
+    },
+    {
+        "id": 11278,
+        "game_id": 135400,
+        "popularity_type": 3,
+        "popularity_source": 121,
+        "value": 0.003490064263545,
+        "calculated_at": 1742087099,
+        "created_at": 1718187393,
+        "updated_at": 1742087275,
+        "external_popularity_source": 121
+    }
+]

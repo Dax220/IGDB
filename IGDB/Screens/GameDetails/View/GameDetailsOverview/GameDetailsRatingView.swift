@@ -21,7 +21,7 @@ struct GameDetailsRatingView: View {
                         .resizable()
                         .frame(width: 24, height: 24)
                         .foregroundColor(.yellow)
-                    Text(viewModel.rating)
+                    Text(viewModel.rating ?? "")
                 }
                 
                 if let ratingCount = viewModel.ratingCount {

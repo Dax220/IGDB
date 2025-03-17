@@ -1,0 +1,14 @@
+//
+//  Config.xcconfig
+//  IGDB
+//
+//  Created by Maxim Tischenko on 17.03.2025.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+
+PopularityType = 2
+ApiClientId = zzs4gfiji5brwwulue73l8ug1vjbhr
+ApiAccessToken = y91urcv3rtjwpgk685on6s4h29mlkn
